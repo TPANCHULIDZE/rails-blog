@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :posts do
+    resources :comments
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  get "user/:id/posts", to: "posts#user_posts", as: :user_post
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
+
+  get "users/:id/profile", to: 'profile#profile', as: :profile
+  root to: "home#index"
 end

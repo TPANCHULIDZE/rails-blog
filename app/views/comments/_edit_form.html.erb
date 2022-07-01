@@ -1,0 +1,17 @@
+<% if user_signed_in? && @comment.user == current_user %>
+  <div class="form-outline mb-4">
+    <%= form_with model: @comment, url: post_comment_path(@post, @comment) do |form| %>
+			  <p>
+			    <%= form.label :author, value: current_user.username  %><br>
+			    <%= form.hidden_field :author, value: current_user.username %>
+			  </p>
+			  <p>
+			    <%= form.text_area :body, class: "form-control", placeholder: "new comment" %>
+			  </p>
+			  <p>
+			    <%= form.submit "update", class: "btn btn-primary" %>
+			  </p>
+		<% end %>
+  </div>
+<% end %>
+

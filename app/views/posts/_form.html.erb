@@ -1,0 +1,27 @@
+<%= form_with model: post, url: posts_path, class: "px-md-2", local: true, data: { turbo: false } do |form| %>
+  
+  <% if form.object.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div> <%= message %> </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control", placeholder: "title" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :body %>
+    <%= form.text_field :body, class: "form-control", placeholder: "body" %>
+  </div>
+
+
+  <div class="d-flex justify-content-center">
+    <%= form.submit "create post", class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+  </div>
+<% end %>
+
+            

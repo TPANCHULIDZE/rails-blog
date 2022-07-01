@@ -1,0 +1,31 @@
+<% @comments.each do |comment| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <p class="form-control">
+      	<%= comment.body%>
+      </p>
+
+      <div class="d-flex justify-content-between">
+        <div class="d-flex flex-row align-items-center">
+          <p class="small mb-0 ms-2">
+          	
+           <strong> Author: <%= comment.user.username  %></strong>
+           <span>&nbsp</span>
+
+           <% if current_user == comment.user %>
+             <div class="d-flex" id="comment">
+             	
+						  <%= link_to "Edit", edit_post_comment_path(@post, comment), class: "btn btn-success", id: "edit_comment", remote: true %>
+						  <span>&nbsp</span>
+						  <%= button_to "Delete", post_comment_path(@post, comment), method: :delete, class: "btn btn-danger", id: "delete_comment" %>
+						</div>
+					<% end %>
+          </p>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'comments/pagination' %>

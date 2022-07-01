@@ -1,0 +1,19 @@
+<div class="container">
+  <% if post %>
+  <div>
+    <h1 align="center"><strong><%= post.title %></strong> </h1>
+  </div>
+
+  <div>
+    <h2 align="center">Author:  <p class="lead"><%= post.user.username %></p> </h2>
+  </div>
+
+  <div class="text-center">
+    <h2>Description</h2>
+   <p class="lead"> <%= post.body %></p>
+  </div>
+<% end %>
+</div>
+
+
+<%= render partial: "comments/show", post: @post %>

@@ -27,6 +27,16 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem 'file_validators'
+
+gem 'will_paginate', '~> 3.3'
+
+gem 'will_paginate-bootstrap-style'
+
+gem "slim-rails"
+
+gem 'carrierwave', '~> 2.0'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -43,6 +53,8 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem 'rspec-rails'
+
+gem 'devise'
 
 # Use Sass to process CSS
 # gem "sassc-rails"

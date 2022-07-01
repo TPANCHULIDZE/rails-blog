@@ -1,0 +1,19 @@
+<h1 align="center">posts</h1>
+
+
+<div class="list-group">
+    <div
+      class="nav flex-column nav-tabs text-center"
+      id="v-tabs-tab"
+      role="tablist"
+      aria-orientation="vertical"
+    >
+
+    
+    <% @posts.each do |post| %> 
+      <%= link_to post.title, post, class: "nav-link" %>
+    <% end %> 
+</div>
+
+<%= render 'posts/pagination' %>
+
