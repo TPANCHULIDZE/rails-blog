@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class="form-outline mb-4">
-    <%= form_with model: @post.comments, url: post_comments_path(@post) do |form| %>
+    <%= form_with model: @post.comments, url: post_comments_path(@post), local: true do |form| %>
 			  <p>
 			    <%= form.label :author, value: current_user.username  %><br>
 			    <%= form.hidden_field :author, value: current_user.username %>
