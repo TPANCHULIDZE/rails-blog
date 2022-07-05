@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <div class="form-outline mb-4">
-    <%= form_with model: @post.comments, url: post_comments_path(@post), local: true do |form| %>
+    <%= form_with model: post.comments, url: post_comments_path(post), local: true do |form| %>
 			  <p>
 			    <%= form.label :author, value: current_user.username  %><br>
 			    <%= form.hidden_field :author, value: current_user.username %>
@@ -10,7 +10,7 @@
 			    <%= form.text_area :body, class: "form-control", placeholder: "new comment" %>
 			  </p>
 			  <p>
-			    <%= form.submit "create", class: "btn btn-primary" %>
+			    <%= form.submit translate("create"), class: "btn btn-primary" %>
 			  </p>
 		<% end %>
   </div>

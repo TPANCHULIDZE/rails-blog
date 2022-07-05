@@ -1,4 +1,4 @@
-<h1 align="center"> <%= current_user.username %>'s posts </h1>
+<h1 align="center"> <%= user.username %>'s posts </h1>
 <br>
 <div class="list-group">
     <div
@@ -7,7 +7,7 @@
       role="tablist"
       aria-orientation="vertical"
     >
-    <% @posts.each do |post| %> 
+    <% posts.each do |post| %> 
       <%= link_to post.title, post, class: "nav-link" %>
     <% end %> 
 </div>

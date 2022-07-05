@@ -1,0 +1,9 @@
+<% if current_user.admin? %>
+	<div>
+		<%= link_to translate("become_guest"), become_guest_path(user), data: { turbo_method: :post }, class: "nav-link" %>
+		<%= link_to translate("become_member"), become_member_path(user), data: { turbo_method: :post }, class: "nav-link" %>
+		<%= link_to translate("become_admin"), become_admin_path(user), data: { turbo_method: :post }, class: "nav-link" %>
+	</div>
+<% end %>
+
+  

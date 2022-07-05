@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
+  before_action :require_user_signed_in!
   before_action :set_post, only: %i[create destroy edit update]
   before_action :set_comment, only: %i[destroy edit update]
+
 
   def new
   end

@@ -1,4 +1,4 @@
-<% @comments.each do |comment| %>
+<% comments.each do |comment| %>
   <div class="card mb-4">
     <div class="card-body">
       <p class="form-control">
@@ -15,14 +15,14 @@
            <% if current_user == comment.user %>
              <div class="d-flex" id="comment">
              	
-						  <%= link_to "Edit", nil, class: "btn btn-success", id: "edit_comment", remote: true, data: {
+						  <%= link_to translate("edit"), nil, class: "btn btn-success", id: "edit_comment", remote: true, data: {
                   controller: "comments",
                   action: "comments#taggleForm",
                   comments_form_param: "edit-form-#{ comment.id }",
                   # comments_body_param: "comment-body-#{ comment.id }"
               } %>
 						  <span>&nbsp</span>
-						  <%= button_to "Delete", post_comment_path(@post, comment), method: :delete, class: "btn btn-danger", id: "delete_comment" %>
+						  <%= button_to translate("delete"), post_comment_path(@post, comment), method: :delete, class: "btn btn-danger", id: "delete_comment" %>
 						</div>
 
             
@@ -35,7 +35,7 @@
   </div>
 
 <div class="d-none" id=<%="edit-form-#{comment.id}"%>>
-  <%= render 'comments/edit_form', post: @post, comment: comment  %>
+  <%= render 'comments/edit_form', post: post, comment: comment  %>
 </div>
 
 <% end %>

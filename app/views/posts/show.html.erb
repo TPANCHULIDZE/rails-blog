@@ -1,13 +1,15 @@
-<%= render @post %>
+<%= render post %>
 <br/>
 <% if user_signed_in? %>
-<div class="d-flex justify-content-center">
-  <%= link_to "Back to posts", posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
-  <span>&nbsp</span>
-  <%= link_to "Edit this post", edit_post_path(@post), class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
-  <span>&nbsp</span>
-  <%= button_to "Delete post", @post, method: :delete, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"%>
-</div>
+  <% if current_user == post.user || current_user.admin? %>
+    <div class="d-flex justify-content-center">
+      <%= link_to translate("back_to_posts"), posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+      <span>&nbsp</span>
+      <%= link_to translate("edit_this_post"), edit_post_path(post), class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+      <span>&nbsp</span>
+      <%= button_to translate("delete_post"), post, method: :delete, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"%>
+    </div>
+  <% end %>
 <% end %>
 
 

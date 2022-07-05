@@ -273,6 +273,7 @@ DEPENDENCIES
   devise
   draper
   file_validators
+  i18n
   importmap-rails
   jbuilder
   pg (~> 1.1)
