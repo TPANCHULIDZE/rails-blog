@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :posts do
       resources :comments, only: %i[create update destroy]
       resources :likes, only: %i[create destroy new]
+    end
+
+    authenticate :user, ->(user) { user.admin? } do
+      mount Sidekiq::Web => '/sidekiq'
     end
 
     get "user/:id/posts", to: "posts#user_posts", as: :user_post

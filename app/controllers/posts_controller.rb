@@ -23,6 +23,8 @@ class PostsController < ApplicationController
   def approve_post
     authorize @post
     @post.update(approve: true)
+    mail = UsersMailer.approve_post(@post.user_id)
+    mail.deliver_now
     redirect_to @post
   end
 
