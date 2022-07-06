@@ -1,6 +1,7 @@
 class UserStatusController < ApplicationController
   before_action :require_user_signed_in! 
   before_action :set_user
+  before_action :require_authorize_user!
 
   def user_become_guest
     @user.update(status: 0)
@@ -23,8 +24,8 @@ class UserStatusController < ApplicationController
     @user = User.find_by(id: params[:id])
   end
 
-  def require_user_is_admin!
-    redirect_to root_path unless current_user.admin?
+  def require_authorize_user!
+    authorize current_user
   end
 end
 

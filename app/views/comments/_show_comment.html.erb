@@ -9,8 +9,10 @@
         <div class="d-flex flex-row align-items-center">
           <p class="small mb-0 ms-2">
           	
-           <strong> Author: <%= comment.user.username  %></strong>
-           <span>&nbsp</span>
+           <strong> <div id="avatar"> <% if comment.user.avatar? %> <%=
+           image_tag comment.user.avatar_url, id: "avatar"%> <% else %> <%=
+           image_tag "avatar.png", id: "avatar" %> <% end %> </div> <%=
+           comment.user.username  %></strong> <span>&nbsp</span>
 
            <% if current_user == comment.user %>
              <div class="d-flex" id="comment">

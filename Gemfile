@@ -82,3 +82,5 @@ group :development do
   # gem "spring"
 end
 
+
+gem "pundit", "~> 2.2"

@@ -1,9 +1,15 @@
 <%= render post %>
 <br/>
 <% if user_signed_in? %>
-  <% if current_user == post.user || current_user.admin? %>
+  <% if policy(post) %>
     <div class="d-flex justify-content-center">
-      <%= link_to translate("back_to_posts"), posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+      <% if post.approve %>
+       <%= link_to translate("back_to_posts"), posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+      <% elsif current_user.admin? %> 
+        <%= link_to translate("approve_post"), approve_post_path(post), data: { turbo_method: :post }, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+      <% else %>
+        <!--  -->
+      <% end %>
       <span>&nbsp</span>
       <%= link_to translate("edit_this_post"), edit_post_path(post), class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
       <span>&nbsp</span>
@@ -11,5 +17,9 @@
     </div>
   <% end %>
 <% end %>
+
+<br>
+<br>
+<br>
 
 

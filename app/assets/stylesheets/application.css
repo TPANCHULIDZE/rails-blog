@@ -13,15 +13,27 @@
  *= require_tree .
  *= require_self
  */
+/*footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;    
+  display: flex;
+  background: #9EDEC6;
+}
+*/
 footer {
-  position: fixed;
+  position:fixed;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #9EDEC6;
+  background-color: red;
+  color: white;
+  text-align: center;
   display: flex;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
-  height: 5%;
+  height: 2.5rem; 
+}
+#page-container {
+  position: relative;
+  min-height: 100vh;
 }

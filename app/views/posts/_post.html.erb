@@ -40,5 +40,6 @@
   </div>
 
 
-
+<% if post.approve %>
  <%= render partial: "comments/show", post: post %>
+<% end %>

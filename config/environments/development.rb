@@ -1,6 +1,26 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+
+
+#config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+# config.action_mailer.default_options = {from: 'no-reply@example.com'}
+
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                  587,
+    domain:               '4709a2f39b264a28ac87e8cc7246bcda.vfs.cloud9.eu-central-1.amazonaws.com',
+    user_name:            'tpanchulidze@unisens.ge',
+    password:             'psxgbnydwgrlqwwd',
+    authentication:       'plain',
+    enable_starttls_auto: true
+   }
+
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
@@ -37,7 +57,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
 

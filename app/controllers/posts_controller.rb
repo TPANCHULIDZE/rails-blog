@@ -1,19 +1,34 @@
 class PostsController < ApplicationController
   before_action :require_user_signed_in!
   before_action :require_user_is_member! 
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy approve_post]
   before_action :set_user, only: %i[show]
+  before_action :require_authorize_post!, only: %i[edit update destroy a]
 
   decorates_assigned :post, :posts, :comments, :user
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.paginate(page: params[:page], per_page: 2)
+    @posts = Post.where(approve: true).paginate(page: params[:page], per_page: 2)
+  end
+
+  def unapprove_posts
+    if current_user.admin?
+      @posts = Post.where(approve: false).paginate(page: params[:page], per_page: 2)
+    else
+      @posts = current_user.posts.where(approve: false).paginate(page: params[:page], per_page: 2)
+    end
+  end
+
+  def approve_post
+    authorize @post
+    @post.update(approve: true)
+    redirect_to @post
   end
 
   def user_posts
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts.paginate(page: params[:page], per_page: 2)
+    @posts = @user.posts.where(approve: true).paginate(page: params[:page], per_page: 2)
   end
 
   # GET /posts/1 or /posts/1.json
@@ -71,7 +86,11 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.find_by(id: params[:id])
+    end
+
+    def require_authorize_post!
+      authorize @post
     end
 
     def set_user
