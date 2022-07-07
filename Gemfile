@@ -12,6 +12,8 @@ gem "sprockets-rails"
 
 gem 'i18n'
 
+gem 'telephone_number'
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 

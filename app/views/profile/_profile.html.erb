@@ -27,7 +27,13 @@
                   </div>
                   <div class="col-6 mb-3">
                     <h6>Phone</h6>
-                    <p class="text-muted">#########</p>
+                    <% @mobiles.each do |mobile| %>
+                    <p class="text-muted"><%= mobile.number %>
+                      <% if current_user == user %>
+                        <%= link_to "delete", destroy_mobile_path(mobile), data: { turbo_method: :delete }, class: "nav-link" %>
+                      <% end %>
+                    <% end %>
+                    <%= link_to "add mobile", users_mobile_phone_path %></p>
                   </div>
                 </div>
                 <h6>Posts</h6>
