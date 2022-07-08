@@ -2,22 +2,22 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: "blog-rails-devise.herokuapp.com" }
-config.action_mailer.raise_delivery_errors = true
-# config.action_mailer.default_options = {from: 'no-reply@example.com'}
-config.action_mailer.perform_deliveries = true
- config.active_job.queue_adapter = :sidekiq
+#   config.action_mailer.default_url_options = { host: "blog-rails-devise.herokuapp.com" }
+# config.action_mailer.raise_delivery_errors = true
+# # config.action_mailer.default_options = {from: 'no-reply@example.com'}
+# config.action_mailer.perform_deliveries = true
+#  config.active_job.queue_adapter = :sidekiq
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:              'smtp.gmail.com',
-    port:                  587,
-    domain:               'blog-rails-devise.herokuapp.com',
-    user_name:            'tpanchulidze@unisens.ge',
-    password:             'psxgbnydwgrlqwwd',
-    authentication:       'plain',
-    enable_starttls_auto: true
-   }
+#   config.action_mailer.delivery_method = :smtp
+#   config.action_mailer.smtp_settings = {
+#     address:              'smtp.gmail.com',
+#     port:                  587,
+#     domain:               'blog-rails-devise.herokuapp.com',
+#     user_name:            'tpanchulidze@unisens.ge',
+#     password:             'psxgbnydwgrlqwwd',
+#     authentication:       'plain',
+#     enable_starttls_auto: true
+#    }
 
 
 
