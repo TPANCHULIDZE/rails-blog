@@ -25,6 +25,7 @@
               <%= link_to translate("unapprove_posts"), unapprove_posts_path, class: "nav-link" %>
             </li>
           </ul>
+          <%= render partial: "shared/language" %>
         <% end %>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>

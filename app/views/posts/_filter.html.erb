@@ -1,0 +1,35 @@
+
+  <div>
+    <%= search_form_for @q,
+          class: 'form',
+          url: posts_path,
+          html: { autocomplete: 'off', autocapitalize: 'none' } do |f| %>
+
+        <%= f.search_field :title_cont, class: "form-control", placeholder:'Filter by title'  %><br>
+
+        <%= f.search_field :body_cont, class: "form-control", placeholder: "Filter by body" %>
+        <br>
+
+        <%= f.label :created_at_gt, 'created time greaten than'%>
+        <%= f.date_field :created_at_gt, class: "form-control" %><br>
+
+        <%= f.label :created_at_lt, 'created time less than' %>
+        <%= f.date_field :created_at_lt, class: "form-control" %><br>
+
+        <%= f.label :updated_at_gt, 'update time greaten than' %>
+        <%= f.date_field :updated_at_gt, class: "form-control" %><br>
+
+        <%= f.label :updated_at_lt, 'update time less than' %>
+        <%= f.date_field :updated_at_lt, class: "form-control" %><br>
+
+        <div class="filters-header-content" align="center">
+          <%= link_to request.path, class: 'form-link' do %>
+            <i class="far fa-undo icon-l" ></i><%= t('Clear_all') %>
+          <% end %>
+          <br>
+          <br>
+          <%= f.submit "filter", class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+  </div>
+<br>

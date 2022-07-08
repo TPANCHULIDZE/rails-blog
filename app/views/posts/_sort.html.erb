@@ -1,0 +1,48 @@
+
+<div align="center">
+<%= sort_link(@q, :title, class: "btn btn-primary") do %>
+  <% if sort_url(@q, :title, class: "btn btn-primary").include?"asc" %>
+  	<strong>Title Desc</strong>
+  <% else %>
+  	<strong>Title Asc</strong>
+  <% end %>
+<% end %>
+
+<%= sort_link(@q, :body, class: "btn btn-primary") do %>
+  <% if sort_url(@q, :body, class: "btn btn-primary").include?"asc" %>
+  	<strong>body Desc</strong>
+  <% else %>
+  	<strong>body Asc</strong>
+  <% end %>
+<% end %>
+
+<%= sort_link(@q, :created_at, class: "btn btn-primary") do %>
+  <% if sort_url(@q, :created_at, class: "btn btn-primary").include?"asc" %>
+  	<strong>created time Desc</strong>
+  <% else %>
+  	<strong>created time Asc</strong>
+  <% end %>
+<% end %>
+
+<%= sort_link(@q, :update_at, class: "btn btn-primary") do %>
+  <% if sort_url(@q, :update_at, class: "btn btn-primary").include?"asc" %>
+  	<strong>updated time Desc</strong>
+  <% else %>
+  	<strong>updated time Asc</strong>
+  <% end %>
+<% end %>
+
+<button id="demo" onclick="myFunction()", class="btn btn-primary"> filter</button>
+</div>
+
+<script>
+function myFunction() {
+  const filter = document.getElementById("filter");
+  filter.classList.toggle("d-none")
+}
+</script>
+<br>
+<div class="d-none" id="filter">
+  <%= render 'posts/filter' %>
+</div>
+

@@ -9,14 +9,17 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.where(approve: true).paginate(page: params[:page], per_page: 2)
+    @q = Post.ransack(params[:q])
+    @q.sorts = 'name asc' if @q.sorts.empty?
+    @posts = @q.result(distinct: true).where(approve: true).paginate(page: params[:page], per_page: 2)
   end
 
   def unapprove_posts
+    @q = Post.ransack(params[:q])
     if current_user.admin?
-      @posts = Post.where(approve: false).paginate(page: params[:page], per_page: 2)
+      @posts = @q.result(distinct: true).where(approve: false).paginate(page: params[:page], per_page: 2)
     else
-      @posts = current_user.posts.where(approve: false).paginate(page: params[:page], per_page: 2)
+      @posts = @q.result(distinct: true).where(user_id: current_user.id).where(approve: false).paginate(page: params[:page], per_page: 2)
     end
   end
 
@@ -30,7 +33,8 @@ class PostsController < ApplicationController
 
   def user_posts
     @user = User.find_by(id: params[:id])
-    @posts = @user.posts.where(approve: true).paginate(page: params[:page], per_page: 2)
+    @q = @user.posts.ransack(params[:q])
+    @posts = @q.result(distinct: true).where(approve: true).paginate(page: params[:page], per_page: 2)
   end
 
   # GET /posts/1 or /posts/1.json

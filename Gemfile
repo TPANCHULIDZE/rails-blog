@@ -12,6 +12,8 @@ gem "sprockets-rails"
 
 gem 'i18n'
 
+gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'
+
 gem 'telephone_number'
 
 # Use postgresql as the database for Active Record
