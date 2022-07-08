@@ -12,7 +12,7 @@ config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                  587,
-    domain:               'https://blog-rails-devise.herokuapp.com',
+    domain:               'blog-rails-devise.herokuapp.com',
     user_name:            'tpanchulidze@unisens.ge',
     password:             'psxgbnydwgrlqwwd',
     authentication:       'plain',
