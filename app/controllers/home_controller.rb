@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  decorates_assigned :posts
+  #decorates_assigned :posts
 
   # def index
   #   @q = Post.ransack(params[:q])
