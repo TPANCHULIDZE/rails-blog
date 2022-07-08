@@ -4,10 +4,10 @@
 # http://en.wikipedia.org/wiki/Cron
 
 
-# set :output, "log/cron.log"
-# set :environment, "production"
+set :output, "log/cron.log"
+set :environment, "production"
 
 
-# every :day, at: '17:13pm' do
-#   rake 'delete:post'
-# end
+every :day, at: '17:13pm' do
+  rake 'delete:post'
+end
