@@ -5,16 +5,14 @@
           <div class="card-body">
             <div class="d-flex flex-start align-items-center">
               <div id="avatar">
-                <% if user.avatar? %>
-                  <%= image_tag user.avatar_url, id: "avatar"%> 
-                <% else %>
-                  <%= image_tag "avatar.png", id: "avatar" %>
-                <% end %>
+                  <%= image_tag user.avatar_image_url, id: "avatar"%>    
               </div>
               <div>
-                <h6 class="fw-bold text-primary mb-1"><%= link_to user.username, profile_path(user), class: "nav-link" %></h6>
+                <h6 class="fw-bold text-primary mb-1">
+                  <%= post.author %>
+                </h6>
                 <p class="text-muted small mb-0">
-                  Shared publicly <%= post.created_at.strftime('%A, %B %e') %>
+                  <%= translate("shared_publicly") %> <%= post.published_time %>
                 </p>
               </div>
             </div>
@@ -23,15 +21,21 @@
               <%= post.body %>
             </p>
 
-            <div class="small d-flex justify-content-start">
-              <% if post.is_liked?(current_user) %>
-                <%= link_to (render 'likes/unlike'), post_like_path(post, post.like()), data: { turbo_method: :delete, turbo: true }, class: "bi bi-hand-thumbs-up"  %> 
+            <div class="small d-flex">
+              <% if post.is_liked?(current_user.id) %>
+                <%= button_to (render 'likes/unlike'), post_like_path(post, post.like()), method: :delete, class: "bi bi-hand-thumbs-up"  %> 
               <% else %>
                 <%= link_to (render 'likes/like'), post_likes_path(post), data: { turbo_method: :post, turbo: true }, class: "bi bi-hand-thumbs-up"   %> 
               <% end %>
               <span>&nbsp</span>
-              <%= post.likes.size %>
-
+              <div style="margin-left: 2%;">
+                <%= post.likes.size %>
+              </div>
+              
+              <span>&nbsp</span>
+              <div style="margin-left: 78%;">
+                <%= post.show_comment %>
+              </div>
             </div>
           </div>
         </div>
@@ -39,7 +43,7 @@
     </div>
   </div>
 
+<div class="d-none" id="comment">
+  <%= post.is_approve? %>
+</div>
 
-<% if post.approve %>
- <%= render partial: "comments/show", post: post %>
-<% end %>

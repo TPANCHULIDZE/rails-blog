@@ -10,7 +10,7 @@
 
   <% if devise_mapping.rememberable? %>
     <div class="form-outline form-white mb-4">
-      <%= f.check_box :remember_me %>
+      <%= f.check_box :remember_me, value: translate("remember_me")%>
       <%= f.label t(:remember_me) %>
     </div>
   <% end %>

@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
   before_action :require_user_signed_in!
-  before_action :require_user_is_member! 
-  before_action :set_post, only: %i[ show edit update destroy approve_post]
+  # before_action :require_user_is_member! 
+  before_action :set_post, only: %i[show edit update destroy approve_post]
   before_action :set_user, only: %i[show]
-  before_action :require_authorize_post!, only: %i[edit update destroy a]
+  before_action :require_authorize_post!, only: %i[edit update destroy show approve_post]
 
   decorates_assigned :post, :posts, :comments, :user
 
@@ -15,16 +15,16 @@ class PostsController < ApplicationController
   end
 
   def unapprove_posts
+    @user = User.find_by(id: params[:user_id])
     @q = Post.ransack(params[:q])
     if current_user.admin?
       @posts = @q.result(distinct: true).where(approve: false).paginate(page: params[:page], per_page: 2)
     else
-      @posts = @q.result(distinct: true).where(user_id: current_user.id).where(approve: false).paginate(page: params[:page], per_page: 2)
+      @posts = @q.result(distinct: true).where(user_id: params[:user_id]).where(approve: false).paginate(page: params[:page], per_page: 2)
     end
   end
 
   def approve_post
-    authorize @post
     @post.update(approve: true)
     mail = UsersMailer.approve_post(@post.user_id)
     mail.deliver_now
@@ -45,6 +45,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    authorize @post
   end
 
   # GET /posts/1/edit
@@ -54,7 +55,8 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = current_user.posts.new(post_params)
-
+    authorize @post
+    
     respond_to do |format|
       if @post.save
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
@@ -105,7 +107,7 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body, :user_id)
+      params.require(:post).permit(:title, :body, :member_only)
     end
 
     def require_user_is_member!

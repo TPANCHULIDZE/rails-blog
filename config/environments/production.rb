@@ -12,9 +12,9 @@ config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                  587,
-    domain:               'blog-rails-devise.herokuapp.com',
-    user_name:            'tpanchulidze@unisens.ge',
-    password:             'psxgbnydwgrlqwwd',
+    domain:                Rails.application.credentials[:domain],
+    user_name:             Rails.application.credentials[:email],
+    password:              Rails.application.credentials[:mailer_key],
     authentication:       'plain',
     enable_starttls_auto: true
    }

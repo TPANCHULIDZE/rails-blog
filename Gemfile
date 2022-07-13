@@ -12,6 +12,8 @@ gem "sprockets-rails"
 
 gem 'i18n'
 
+gem "geocoder"
+
 gem 'whenever', require: false
 
 gem 'ransack', :github => 'activerecord-hackery/ransack', :branch => 'main'

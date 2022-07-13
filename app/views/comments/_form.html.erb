@@ -5,8 +5,7 @@
 			    <%= form.hidden_field :author, value: current_user.username %>
 			  </p>
 			  <p>
-			    <% form.label :body %><br>
-			    <%= form.text_area :body, class: "form-control", placeholder: "new comment" %>
+			    <%= form.text_area :body, class: "form-control", placeholder: translate("new_comment") %>
 			  </p>
 			  <p>
 			    <%= form.submit translate("create"), class: "btn btn-primary" %>

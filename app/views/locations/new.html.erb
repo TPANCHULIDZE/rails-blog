@@ -1,0 +1,11 @@
+<div class="container">
+	<%= form_with model: @location, url: create_location_path do |form| %>
+	
+	<%= form.text_field :street, placeholder: translate("street"), class: "form-control" %>
+	<%= form.text_field :city, placeholder: translate("city"), class: "form-control" %>
+	<%= form.text_field :state, placeholder: translate("state"), class: "form-control" %>
+	<%= form.text_field :country, placeholder: translate("country"), class: "form-control" %>
+	<%= form.submit translate("add"), class: "btn btn-primary" %>
+<% end %>
+</div>
+

@@ -11,6 +11,10 @@ class PostPolicy < ApplicationPolicy
     @user, @post = user, post
   end
 
+  def create?
+    require_user_is_member_or_admin!
+  end
+
   def update?
     require_user_is_admin_or_author!
   end
@@ -20,11 +24,19 @@ class PostPolicy < ApplicationPolicy
   end
 
   def new?
-    require_user_is_admin_or_author!
+    require_user_is_member_or_admin!
   end
 
   def approve_post?
     require_user_is_admin!
+  end
+
+  def show?
+    if post.member_only
+      require_user_is_member_or_admin!
+    else
+      true
+    end
   end
 
   private 
@@ -35,5 +47,9 @@ class PostPolicy < ApplicationPolicy
 
   def require_user_is_admin!
     user.admin?
+  end
+
+  def require_user_is_member_or_admin!
+    user.admin? || user.member?
   end
 end

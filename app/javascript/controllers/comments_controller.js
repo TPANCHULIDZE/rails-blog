@@ -4,14 +4,18 @@ export default class extends Controller {
 	initialize() { }
 	connect() { }
 	taggleForm(event) {
-	event.preventDefault();
-	event.stopPropagation();
-	const formID = event.params["form"];
-	// const commentBodyID = event.params["body"];
-	const form = document.getElementById(formID);
-	// const commentBody = document.getElementById(commentBodyID);
-	form.classList.toggle("d-none");
-	// commentbody.classList.toggle("d-none");
+		event.preventDefault();
+		event.stopPropagation();
+		const formID = event.params["form"];
+		const form = document.getElementById(formID);
+		form.classList.toggle("d-none");
+	}
+
+	myComment(event) {
+		event.preventDefault();
+		event.stopPropagation();
+	  const comment = document.getElementById("comment");
+	  comment.classList.toggle("d-none") 
 	}
 	
 }

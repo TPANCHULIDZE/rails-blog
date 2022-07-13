@@ -1,11 +1,10 @@
-
 <br><div>
 <%= search_form_for @q do |f| %>
   <div >
-    <%= f.search_field :title_or_body_cont, placeholder: "search post", class:"form-control"  %>  
+    <%= f.search_field :title_or_body_cont, placeholder: translate("search_post"), class:"form-control"  %>  
   </div><br>
     <div align="center">
-      <%= f.submit "search", class: "btn btn-primary" %> 
+      <%= f.submit translate("search"), class: "btn btn-primary" %> 
     </div>
     
 <% end %>

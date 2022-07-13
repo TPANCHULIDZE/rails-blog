@@ -2,7 +2,7 @@
 	<div class="col-md-8 col-lg-6">
 		<div class="card shadow-0 border" style="background-color: #f0f2f5;">
 		  <div class="card-body p-4">
-		    <% if user_signed_in? && comment.user == current_user %>
+		    <% if comment.is_current_user_author?(current_user) %>
 		  	<div class="form-outline mb-4">
 			    <%= form_with model: [post, comment] do |form| %>
 						  <p>

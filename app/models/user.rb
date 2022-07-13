@@ -13,7 +13,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :mobiles, dependent: :destroy
-
+  has_many :locations, dependent: :destroy
+  
   mount_uploader :avatar, AvatarUploader
 
   validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes }

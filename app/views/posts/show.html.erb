@@ -1,19 +1,14 @@
 <%= render post %>
+
 <br/>
 <% if user_signed_in? %>
   <% if policy(post) %>
     <div class="d-flex justify-content-center">
-      <% if post.approve %>
-       <%= link_to translate("back_to_posts"), posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
-      <% elsif current_user.admin? %> 
-        <%= link_to translate("approve_post"), approve_post_path(post), data: { turbo_method: :post }, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
-      <% else %>
-        <!--  -->
-      <% end %>
+      <%= post.approve_post %>
       <span>&nbsp</span>
-      <%= link_to translate("edit_this_post"), edit_post_path(post), class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+      <%= post.edit_post %>
       <span>&nbsp</span>
-      <%= button_to translate("delete_post"), post, method: :delete, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"%>
+      <%= post.delete_post %>
     </div>
   <% end %>
 <% end %>

@@ -1,46 +1,42 @@
 
 <div align="center">
 <%= sort_link(@q, :title, class: "btn btn-primary") do %>
-  <% if sort_url(@q, :title, class: "btn btn-primary").include?"asc" %>
-  	<strong>Title Desc</strong>
+  <% if sort_url(@q, :title, class: "btn btn-primary").include?"title+asc" %>
+  	<strong><%= translate("title_desc")%></strong>
   <% else %>
-  	<strong>Title Asc</strong>
+  	<strong><%= translate("title_asc")%></strong>
   <% end %>
 <% end %>
 
 <%= sort_link(@q, :body, class: "btn btn-primary") do %>
-  <% if sort_url(@q, :body, class: "btn btn-primary").include?"asc" %>
-  	<strong>body Desc</strong>
+  <% if sort_url(@q, :body, class: "btn btn-primary").include?"body+asc" %>
+  	<strong><%= translate("body_desc")%></strong>
   <% else %>
-  	<strong>body Asc</strong>
+  	<strong><%= translate("body_asc")%></strong>
   <% end %>
 <% end %>
 
 <%= sort_link(@q, :created_at, class: "btn btn-primary") do %>
-  <% if sort_url(@q, :created_at, class: "btn btn-primary").include?"asc" %>
-  	<strong>created time Desc</strong>
+  <% if sort_url(@q, :created_at, class: "btn btn-primary").include?"created_at+asc" %>
+  	<strong><%= translate("created_time_desc")%></strong>
   <% else %>
-  	<strong>created time Asc</strong>
+  	<strong><%= translate("created_time_asc")%></strong>
   <% end %>
 <% end %>
 
 <%= sort_link(@q, :update_at, class: "btn btn-primary") do %>
-  <% if sort_url(@q, :update_at, class: "btn btn-primary").include?"asc" %>
-  	<strong>updated time Desc</strong>
+  <% if sort_url(@q, :update_at, class: "btn btn-primary").include?"update_at+asc" %>
+  	<strong><%= translate("updated_time_desc")%></strong>
   <% else %>
-  	<strong>updated time Asc</strong>
+  	<strong><%= translate("updated_time_asc")%></strong>
   <% end %>
 <% end %>
 
-<button id="demo" onclick="myFunction()", class="btn btn-primary"> filter</button>
-</div>
+<%= link_to translate("filter"), nil, remote: true, data: {
+  controller: "posts",
+  action: "posts#myFilter"
+}, class: "btn btn-primary" %>
 
-<script>
-function myFunction() {
-  const filter = document.getElementById("filter");
-  filter.classList.toggle("d-none")
-}
-</script>
 <br>
 <div class="d-none" id="filter">
   <%= render 'posts/filter' %>

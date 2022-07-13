@@ -7,7 +7,7 @@
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <h3 class="mb-5">Reset Password</h3>
+            <h3 class="mb-5"><%= translate("reset_password") %></h3>
 
            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
               <%= render "users/shared/error_messages", resource: resource %>
@@ -17,14 +17,14 @@
                 <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> characters minimum)</em><br />
                 <% end %>
-                <%= f.password_field :password, autofocus: true, autocomplete: "new-password",class:"form-control form-control-lg", placeholder: "password" %>
+                <%= f.password_field :password, autofocus: true, autocomplete: "new-password",class:"form-control form-control-lg", placeholder: translate("password") %>
               </div>
 
             <div class="form-outline mb-4">
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-lg", placeholder: "password confirmation" %>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control form-control-lg", placeholder: translate("password_confirmation") %>
             </div>
 
-              <%= f.submit "send", class: "btn btn-primary btn-lg btn-block" %>
+              <%= f.submit translate("send"), class: "btn btn-primary btn-lg btn-block" %>
             <% end %>
             <br>
             

@@ -9,26 +9,16 @@
         <div class="d-flex flex-row align-items-center">
           <p class="small mb-0 ms-2">
           	
-           <strong> <div id="avatar"> <% if comment.user.avatar? %> <%=
-           image_tag comment.user.avatar_url, id: "avatar"%> <% else %> <%=
-           image_tag "avatar.png", id: "avatar" %> <% end %> </div> <%=
-           comment.user.username  %></strong> <span>&nbsp</span>
+           <strong> <div id="avatar">  <%=
+           image_tag comment.author_avatar, id: "avatar" %>  </div> 
+           <%= comment.author  %></strong> <span>&nbsp</span>
 
-           <% if current_user == comment.user %>
              <div class="d-flex" id="comment">
-             	
-						  <%= link_to translate("edit"), nil, class: "btn btn-success", id: "edit_comment", remote: true, data: {
-                  controller: "comments",
-                  action: "comments#taggleForm",
-                  comments_form_param: "edit-form-#{ comment.id }",
-                  # comments_body_param: "comment-body-#{ comment.id }"
-              } %>
+             	<%= comment.edit_comment(current_user) %>
 						  <span>&nbsp</span>
-						  <%= button_to translate("delete"), post_comment_path(@post, comment), method: :delete, class: "btn btn-danger", id: "delete_comment" %>
+						  <%= comment.delete_comment(current_user) %>
 						</div>
 
-            
-					<% end %>
           </p>
         </div>
        

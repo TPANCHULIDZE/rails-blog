@@ -7,16 +7,16 @@
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <h3 class="mb-5">Reset Password</h3>
+            <h3 class="mb-5"><%= translate("reset_password") %></h3>
 
             <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
 
             <div class="form-outline mb-4">
 
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-lg", placeholder: "email" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-lg", placeholder: translate("email") %>
             </div>
 
-              <%= f.submit "send", class: "btn btn-primary btn-lg btn-block" %>
+              <%= f.submit translate("send"), class: "btn btn-primary btn-lg btn-block" %>
             <% end %>
             <br>
             

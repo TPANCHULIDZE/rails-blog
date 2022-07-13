@@ -122,6 +122,7 @@ GEM
     file_validators (3.0.0)
       activemodel (>= 3.2)
       mime-types (>= 1.0)
+    geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.10.0)
@@ -295,6 +296,7 @@ DEPENDENCIES
   devise
   draper
   file_validators
+  geocoder
   i18n
   importmap-rails
   jbuilder

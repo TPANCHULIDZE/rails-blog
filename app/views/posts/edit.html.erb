@@ -8,15 +8,13 @@
             alt="Sample photo">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2", align="center"><%= translate("edit_post") %></h3>
-
               <%= render "edit_form", post: post %>
-
               <br/>
 
               <div class="d-flex justify-content-center">
-                <%= link_to translate("back_to_post"), post, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+                <%= post.show %>
                 <span>&nbsp</span>
-                <%= link_to translate("back_to_posts"), posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
+                <%= post.show_all %>
               </div>
           </div>
         </div>
