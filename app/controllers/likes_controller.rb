@@ -3,9 +3,6 @@ class LikesController < ApplicationController
   before_action :set_post, only: %i[ create destroy]
   before_action :set_like, only: %i[ destroy ]
 
-  def new
-  end
-
   def create
     @post.likes.create(user_id: current_user.id)
     redirect_to @post
@@ -13,7 +10,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like.destroy
-    redirect_to @post
+    redirect_to @post, status: 303
   end
 
 

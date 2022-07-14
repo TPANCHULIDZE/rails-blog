@@ -17,6 +17,7 @@ class User < ApplicationRecord
   
   mount_uploader :avatar, AvatarUploader
 
+  validates :username, presence: true
   validates :avatar, file_size: { less_than_or_equal_to: 5.megabytes }
   validates :status, presence: true
 

@@ -1,8 +1,11 @@
 <% if current_user.admin? %>
 <div>
 	<%= user.become_guest %>
-	<%= user.become_member %>
+	<%= user.become_member_by_admin %>
 	<%= user.become_admin %>
 </div>
 <% end %>
-  
+
+<% if current_user == user && user.guest? %>
+	<%= user.become_member %>
+<% end %>

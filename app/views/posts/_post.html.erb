@@ -23,7 +23,7 @@
 
             <div class="small d-flex">
               <% if post.is_liked?(current_user.id) %>
-                <%= button_to (render 'likes/unlike'), post_like_path(post, post.like()), method: :delete, class: "bi bi-hand-thumbs-up"  %> 
+                <%= link_to (render 'likes/unlike'), post_like_path(post, post.like()), data: {turbo_method: :delete}, class: "bi bi-hand-thumbs-up"  %> 
               <% else %>
                 <%= link_to (render 'likes/like'), post_likes_path(post), data: { turbo_method: :post, turbo: true }, class: "bi bi-hand-thumbs-up"   %> 
               <% end %>

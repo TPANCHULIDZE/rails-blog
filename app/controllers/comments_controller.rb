@@ -3,10 +3,6 @@ class CommentsController < ApplicationController
   before_action :set_post, only: %i[create destroy edit update]
   before_action :set_comment, only: %i[destroy edit update]
 
-
-  def new
-  end
-
   def create
     @comment = current_user.comments.new(comment_params)
     @comment.post = @post
@@ -16,10 +12,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    redirect_to @post
-  end
-
-  def edit
+    redirect_to @post, status: 303
   end
 
   def update

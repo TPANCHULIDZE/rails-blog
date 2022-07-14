@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     resources :posts do
       resources :comments, only: %i[create update destroy]
-      resources :likes, only: %i[create destroy new]
+      resources :likes, only: %i[create destroy]
     end
 
     authenticate :user, ->(user) { user.admin? } do
@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       passwords: 'users/passwords'
     }
 
+    get "users/:user_id/charges/new", to: "charges#new", as: :new_charges
+    post "users/:user_id/charges/create", to: "charges#create", as: :charges
+
     get "users/mobile_phone", to: "mobiles#new"
     post "users/mobile_phone", to: "mobiles#create"
     delete "users/:user_id/mobile_phone/delete/:id", to: "mobiles#destroy", as: :destroy_mobile
@@ -28,14 +31,15 @@ Rails.application.routes.draw do
     
     get "users/:id/profile", to: 'profile#profile', as: :profile
 
-    get "/unapprove_posts/:user_id", to: "posts#unapprove_posts", as: :unapprove_posts
-    post "/approve_post/:user_id/:id", to: "posts#approve_post", as: :approve_post
+    get "/users/:user_id/unapprove_posts", to: "posts#unapprove_posts", as: :unapprove_posts
+    post "users/:user_id/approve_post/:id", to: "posts#approve_post", as: :approve_post
 
-    get "/users/:user_id/location/all", to: "locations#index", as: :locations
+    get "/users/:user_id/locations/all", to: "locations#index", as: :locations
     get "/users/locations/show/:id", to: "locations#show", as: :show_location
-    get "users/location/add", to: "locations#new", as: :add_location
-    post "users/location/add", to: "locations#create", as: :create_location
-    delete "users/:user_id/location/delete/:id", to: "locations#destroy", as: :destroy_address
+    get "users/locations/add", to: "locations#new", as: :add_location
+    post "users/locations/add", to: "locations#create", as: :create_location
+    delete "users/:user_id/locations/delete/:id", to: "locations#destroy", as: :destroy_address
+   
     root to: "home#index"
   end
 end

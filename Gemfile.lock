@@ -236,6 +236,8 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
+    shoulda-matchers (5.1.0)
+      activesupport (>= 5.2.0)
     sidekiq (6.5.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -257,6 +259,7 @@ GEM
     ssrf_filter (1.0.7)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
+    stripe (6.5.0)
     strscan (3.0.3)
     telephone_number (1.4.16)
     temple (0.8.2)
@@ -306,10 +309,12 @@ DEPENDENCIES
   rails (~> 7.0.3)
   ransack!
   rspec-rails
+  shoulda-matchers (~> 5.0)
   sidekiq
   slim-rails
   sprockets-rails
   stimulus-rails
+  stripe
   telephone_number
   turbo-rails
   tzinfo-data

@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe PostsController, type: :routing do
-  describe "routing" do
+  describe "posts" do
     it "routes to #index" do
       expect(get: "/posts").to route_to("posts#index")
     end
@@ -33,6 +33,31 @@ RSpec.describe PostsController, type: :routing do
 
     it "routes to #destroy" do
       expect(delete: "/posts/1").to route_to("posts#destroy", id: "1")
+    end
+
+    it "routes to #user_posts" do
+      expect(get: "user/:id/posts").to route_to({
+        controller: "posts",
+        action: "user_posts",
+        id: ":id"
+      })
+    end
+
+    it "routes to #unapprove_posts" do
+      expect(get: "/users/:user_id/unapprove_posts").to route_to({
+        controller: "posts",
+        action: "unapprove_posts",
+        user_id: ":user_id"
+      })
+    end
+
+    it "routes to #approve_posts" do
+      expect(post: "/users/:user_id/approve_post/:id").to route_to({
+        controller: "posts",
+        action: "approve_post",
+        user_id: ":user_id",
+        id: ":id"
+      })
     end
   end
 end

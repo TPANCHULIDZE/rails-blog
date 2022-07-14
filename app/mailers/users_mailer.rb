@@ -1,6 +1,4 @@
 class UsersMailer < ApplicationMailer
-
-
   def approve_post(user_id)
     @user = User.find(user_id)
 
