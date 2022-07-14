@@ -11,7 +11,7 @@
 	</article>
 
 	<script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-	data-key="<%= Rails.application.credentials.development[:stripe_published_key] %>"
+	data-key="<%= Rails.application.credentials.production[:stripe_published_key] %>"
 	data-description="Monthly subscription"
 	data-amount="500"
 	data-locale="auto"></script>
