@@ -10,5 +10,4 @@ class Location < ApplicationRecord
   def coordinates
     [self.latitude, self.longitude]
   end
-
 end

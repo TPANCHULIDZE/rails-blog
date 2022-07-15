@@ -2,26 +2,26 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe "user" do
-    subject { described_class.new(username: "tato", email: "tatopanchulidze@gmail.com", password: "tato1234", password_confirmation: "tato1234")}
+    subject { create(:user) }
     
     context 'have many posts' do
-      it { should have_many(:posts) }
+      it { should have_many(:posts).dependent(:destroy) }
     end
 
     context 'have many comments' do
-      it { should have_many(:comments) }
+      it { should have_many(:comments).dependent(:destroy) }
     end
 
     context 'have many likes' do
-      it { should have_many(:likes) }
+      it { should have_many(:likes).dependent(:destroy) }
     end
 
     context  'have many mobiles' do
-      it { should have_many(:mobiles) }
+      it { should have_many(:mobiles).dependent(:destroy) }
     end
 
     context 'have_many locations' do
-      it { should have_many(:locations) }
+      it { should have_many(:locations).dependent(:destroy) }
     end
 
     context 'have validate username' do
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'have validate password' do
-      it { should validate_presence_of(:password) }
+      it { should validate_length_of(:password).is_at_least(6).on(:create) }
       it { should validate_confirmation_of(:password) }
     end
 

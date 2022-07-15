@@ -7,7 +7,8 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+config.active_support.deprecation = :stderr
+config.active_support.deprecation = :log
 config.action_mailer.perform_deliveries = true
  config.active_job.queue_adapter = :sidekiq
 config.action_mailer.raise_delivery_errors = true
