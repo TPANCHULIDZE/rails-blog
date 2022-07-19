@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     get "user/:id/posts", to: "posts#user_posts", as: :user_post
 
-    devise_for :users, controllers: {
+    devise_for :users, skip: :omniauth_callbacks, controllers: {
       sessions: 'users/sessions',
       registrations: 'users/registrations',
       passwords: 'users/passwords'
@@ -42,4 +42,6 @@ Rails.application.routes.draw do
    
     root to: "home#index"
   end
+
+  devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end
