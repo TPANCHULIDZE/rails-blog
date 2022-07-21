@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   def approve_post
     @post.update(approve: true)
     mail = UsersMailer.approve_post(@post.user_id)
-    mail.deliver_now
+    mail.deliver_later
     redirect_to @post
   end
 

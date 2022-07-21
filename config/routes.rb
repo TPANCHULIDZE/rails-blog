@@ -41,7 +41,8 @@ Rails.application.routes.draw do
     delete "users/:user_id/locations/delete/:id", to: "locations#destroy", as: :destroy_address
    
     root to: "home#index"
+    
   end
-
+  OmniAuth.config.allowed_request_methods = %i[get]
   devise_for :users, only: :omniauth_callbacks, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 end

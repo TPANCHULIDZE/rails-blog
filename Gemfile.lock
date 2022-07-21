@@ -376,6 +376,7 @@ DEPENDENCIES
   rails (~> 7.0.3)
   rails-controller-testing
   ransack!
+  redis (~> 4.7, >= 4.7.1)
   rspec-rails
   shoulda-matchers (~> 5.0)
   sidekiq
