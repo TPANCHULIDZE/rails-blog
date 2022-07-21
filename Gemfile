@@ -10,6 +10,8 @@ gem 'redis', '~> 4.7', '>= 4.7.1'
 
 gem 'omniauth-google-oauth2'
 
+gem 'google-apis-drive_v3', '~> 0.26.0'
+
 gem "omniauth-rails_csrf_protection"
 
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
