@@ -23,6 +23,10 @@ class PostDecorator < ApplicationDecorator
     button_to translate("delete_post"), post, method: :delete, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"
   end
 
+  def title_and_status
+    post.title 
+  end
+
   def is_approve?
     if post.approve 
       render  "comments/show", post: post
@@ -60,5 +64,11 @@ class PostDecorator < ApplicationDecorator
 
   def show_all
     link_to translate("back_to_posts"), posts_path, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+  end
+
+  def back_status
+    return "member_only" if post.member_only
+    
+    "free"
   end
 end
