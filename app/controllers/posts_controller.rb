@@ -11,16 +11,16 @@ class PostsController < ApplicationController
   def index
     @q = Post.ransack(params[:q])
     @q.sorts = 'name asc' if @q.sorts.empty?
-    @posts = @q.result(distinct: true).where(approve: true).paginate(page: params[:page], per_page: 2)
+    @posts = @q.result(distinct: true).where(approve: true).paginate(page: params[:page], per_page: 10)
   end
 
   def unapprove_posts
     @user = User.find_by(id: params[:user_id])
     @q = Post.ransack(params[:q])
     if current_user.admin?
-      @posts = @q.result(distinct: true).where(approve: false).paginate(page: params[:page], per_page: 2)
+      @posts = @q.result(distinct: true).where(approve: false).paginate(page: params[:page], per_page: 10)
     else
-      @posts = @q.result(distinct: true).where(user_id: params[:user_id]).where(approve: false).paginate(page: params[:page], per_page: 2)
+      @posts = @q.result(distinct: true).where(user_id: params[:user_id]).where(approve: false).paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   def user_posts
     @user = User.find_by(id: params[:id])
     @q = @user.posts.ransack(params[:q])
-    @posts = @q.result(distinct: true).where(approve: true).paginate(page: params[:page], per_page: 2)
+    @posts = @q.result(distinct: true).where(approve: true).paginate(page: params[:page], per_page: 10)
   end
 
   # GET /posts/1 or /posts/1.json
