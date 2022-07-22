@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = "You have to be member or admin for this action"
     redirect_back(fallback_location: root_path)
   end
 

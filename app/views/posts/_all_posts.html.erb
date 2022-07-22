@@ -11,6 +11,7 @@
 
     
     <% posts.each do |post| %> 
+      <%= (post.member_only ? "for members" : "free") %>
       <%= link_to post.title, post, class: "nav-link" %>
     <% end %> 
 </div>
