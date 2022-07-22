@@ -14,6 +14,8 @@ gem 'google-apis-drive_v3', '~> 0.26.0'
 
 gem "omniauth-rails_csrf_protection"
 
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+
 gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
 
 gem 'sidekiq'
