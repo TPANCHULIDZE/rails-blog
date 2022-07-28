@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
     end
 
-    get "user/:id/posts", to: "posts#user_posts", as: :user_post
 
     devise_for :users, skip: :omniauth_callbacks, controllers: {
       sessions: 'users/sessions',
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
     
     get "users/:id/profile", to: 'profile#profile', as: :profile
 
+    get "user/:id/posts", to: "posts#user_posts", as: :user_post
     get "/users/:user_id/unapprove_posts", to: "posts#unapprove_posts", as: :unapprove_posts
     post "users/:user_id/approve_post/:id", to: "posts#approve_post", as: :approve_post
 

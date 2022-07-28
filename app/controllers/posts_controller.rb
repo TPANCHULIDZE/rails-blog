@@ -25,6 +25,8 @@ class PostsController < ApplicationController
   end
 
   def approve_post
+    redirect_to root_path, alert: "you are not allowed for this action" unless current_user.admin?
+     
     @post.update(approve: true)
     mail = UsersMailer.approve_post(@post.user_id)
     mail.deliver_now
