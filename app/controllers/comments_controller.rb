@@ -6,17 +6,27 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.new(comment_params)
     @comment.post = @post
-    @comment.save
+    if @comment.save
+      flash[:notice] = "create new comment"
+    else
+      flash[:alert] = "comment can't be empty"
+    end
+
     redirect_to @post
   end
 
   def destroy
     @comment.destroy
-    redirect_to @post, status: 303
+    redirect_to @post, status: 303, notice: "comment was deleted"
   end
 
   def update
-    @comment.update(comment_params)
+    if @comment.update(comment_params)
+      flash[:notice] = "update comment"
+    else
+      flash[:alert] = "comment not update"
+    end
+     
     redirect_to @post
   end
 

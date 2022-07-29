@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_action :require_user_signed_in!
+
   def index
     @user = User.find_by(id: params[:user_id])
     @locations = @user.locations

@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
   before_action :require_user_signed_in!
-  # before_action :require_user_is_member! 
   before_action :set_post, only: %i[show edit update destroy approve_post]
   before_action :set_user, only: %i[show]
   before_action :require_authorize_post!, only: %i[edit update destroy show approve_post]
@@ -110,10 +109,6 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:title, :body, :member_only)
-    end
-
-    def require_user_is_member!
-      redirect_to root_path unless current_user.member? || current_user.admin?
     end
 end
 
