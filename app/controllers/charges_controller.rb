@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
+  before_action :require_user_signed_in!
+
   def new
-    @user = User.find_by(id: params[:user_id])
   end
 
   def create
@@ -18,13 +19,11 @@ class ChargesController < ApplicationController
     :currency => "usd"
     )
     
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(email: params[:stripeEmail])
     @user.update(status: 1)
 
     rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to new_charge_path
+    redirect_to new_charges_path
   end
-
-
 end
