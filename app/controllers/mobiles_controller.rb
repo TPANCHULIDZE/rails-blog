@@ -1,4 +1,5 @@
 class MobilesController < ApplicationController
+  before_action :require_user_signed_in!
 
   def new
     @mobile = Mobile.new()
@@ -15,8 +16,9 @@ class MobilesController < ApplicationController
 
   def destroy
     @mobile = Mobile.find_by(id: params[:id])
+    @user = User.find_by(id: params[:user_id])
     @mobile.destroy
-    redirect_to profile_path(current_user)
+    redirect_to profile_path(@user)
   end
 
   private

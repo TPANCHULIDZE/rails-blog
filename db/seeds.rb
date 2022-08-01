@@ -19,8 +19,8 @@ class BlogFiller
     user_start = User.last.id - 20
     50.times do
       Post.create({
-        title: Faker::String.random.tr("\u0000", ''),
-        body: Faker::String.random.tr("\u0000", ''),
+        title:Faker::Alphanumeric.alpha(number: 15),
+        body: Faker::Alphanumeric.alpha(number: 30),
         user_id: Faker::Number.within(range: user_start..(user_start + 20)),
         member_only: Faker::Boolean.boolean,
         approve: Faker::Boolean.boolean
@@ -31,10 +31,11 @@ class BlogFiller
   def create_comments
     user_start = User.last.id - 20
     post_start = Post.last.id - 50
+
     100.times do
       user = User.find_by(id: Faker::Number.within(range: user_start..(user_start + 20)))
       Comment.create({
-        body: Faker::String.random.tr("\u0000", ''),
+        body: Faker::Alphanumeric.alpha(number: 20),
         post_id: Faker::Number.within(range: post_start..(post_start + 50)),
         user_id: user.id,
         author: user.username
@@ -64,14 +65,13 @@ class BlogFiller
                                     country_name_to_code: {name: 'united_states'})
       address[:user_id] = Faker::Number.within(range: user_start..(user_start + 20))
       location = Location.create(address)
-     
     end
   end
 
   def create_mobiles
     user_start = User.last.id - 20
+    Faker::Config.locale = 'en-US'
     30.times do
-      Faker::Config.locale = 'en-US'
       country = Faker::Address.country_code
       number = Faker::PhoneNumber.phone_number
       mobile = Mobile.create({

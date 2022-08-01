@@ -5,8 +5,6 @@ class HomeController < ApplicationController
     @q = Post.ransack(params[:q])
     @p = @q.result(distinct: true)
     @posts = @p.where(approve: true).paginate(page: params[:page], per_page: 10)
-    
-    #@posts = Post.where(approve: true).paginate(page: params[:page], per_page: 2)
   end
 
   def change_laguage

@@ -69,19 +69,19 @@ class UserDecorator < ApplicationDecorator
   end
 
   def become_guest
-    link_to translate("become_guest"), become_guest_path(user), data: { turbo_method: :post }, class: "nav-link"
+    link_to translate("become_guest"), become_guest_path(user), data: { turbo_method: :patch }, class: "nav-link"
   end
 
   def become_member
-    link_to translate("become_member"), new_charges_path(user), data: { turbo_method: :get }, class: "nav-link"
+    link_to translate("become_member"), new_charges_path, data: { turbo_method: :get }, class: "nav-link"
   end
 
   def become_member_by_admin
-    link_to translate("become_member"), become_member_path(user), data: { turbo_method: :post }, class: "nav-link"
+    link_to translate("become_member"), become_member_path(user), data: { turbo_method: :patch }, class: "nav-link"
   end
 
   def become_admin
-    link_to translate("become_admin"), become_admin_path(user), data: { turbo_method: :post }, class: "nav-link"
+    link_to translate("become_admin"), become_admin_path(user), data: { turbo_method: :patch }, class: "nav-link"
   end
 
   def show_location(location)

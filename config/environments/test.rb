@@ -20,8 +20,8 @@ config.action_mailer.raise_delivery_errors = true
     address:              'smtp.gmail.com',
     port:                  587,
     domain:               Rails.application.credentials[:domain],
-    user_name:            Rails.application.credentials[:email],
-    password:             Rails.application.credentials[:mailer_key],
+    user_name:            "vdybjkg@gmail.com",
+    password:             "kjrdsnlkerjsdmlker.ndmfiolk",
     authentication:       'plain',
     enable_starttls_auto: true
    }

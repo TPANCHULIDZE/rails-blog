@@ -1,14 +1,17 @@
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 
+
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
-# require 'devise'
-# require '/spec/support/controller_macros'
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+require 'devise'
+require 'support/controller_macros'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -55,8 +58,13 @@ RSpec.configure do |config|
     end
   end
 
-  # config.include Devise::Test::ControllerHelpers, :type => :request
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+
+  config.include Devise::Test::ControllerHelpers, :type => :controller
   config.include FactoryBot::Syntax::Methods
+  config.include Warden::Test::Helpers
   #config.extend ControllerMacros, :type => :request
 
 end

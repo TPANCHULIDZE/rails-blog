@@ -10,7 +10,6 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
     end
 
-    get "user/:id/posts", to: "posts#user_posts", as: :user_post
 
     devise_for :users, skip: :omniauth_callbacks, controllers: {
       sessions: 'users/sessions',
@@ -18,19 +17,20 @@ Rails.application.routes.draw do
       passwords: 'users/passwords'
     }
 
-    get "users/:user_id/charges/new", to: "charges#new", as: :new_charges
-    post "users/:user_id/charges/create", to: "charges#create", as: :charges
+    get "users/charges/new", to: "charges#new", as: :new_charges
+    post "users/charges/create", to: "charges#create", as: :charges
 
     get "users/mobile_phone", to: "mobiles#new"
     post "users/mobile_phone", to: "mobiles#create"
     delete "users/:user_id/mobile_phone/delete/:id", to: "mobiles#destroy", as: :destroy_mobile
 
-    post "users/status/guest/:id", to: 'user_status#user_become_guest', as: :become_guest
-    post "users/status/member/:id", to: 'user_status#user_become_member', as: :become_member
-    post "users/status/admin/:id", to: 'user_status#user_become_admin', as: :become_admin
+    patch "users/status/guest/:id", to: 'user_status#user_become_guest', as: :become_guest
+    patch "users/status/member/:id", to: 'user_status#user_become_member', as: :become_member
+    patch "users/status/admin/:id", to: 'user_status#user_become_admin', as: :become_admin
     
     get "users/:id/profile", to: 'profile#profile', as: :profile
 
+    get "user/:id/posts", to: "posts#user_posts", as: :user_post
     get "/users/:user_id/unapprove_posts", to: "posts#unapprove_posts", as: :unapprove_posts
     post "users/:user_id/approve_post/:id", to: "posts#approve_post", as: :approve_post
 
