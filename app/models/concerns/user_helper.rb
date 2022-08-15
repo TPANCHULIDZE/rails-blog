@@ -3,7 +3,7 @@ module UserHelper
 
   included do
     private
-
+    
     def set_default_status
       self.status ||= :guest
     end
