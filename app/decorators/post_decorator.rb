@@ -16,11 +16,15 @@ class PostDecorator < ApplicationDecorator
   end
 
   def edit_post
-    link_to translate("edit_this_post"), edit_post_path(post), class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+    if current_user == post.user
+      link_to translate("edit_this_post"), edit_post_path(post), class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+    end
   end
 
   def delete_post
-    button_to translate("delete_post"), post, method: :delete, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+    if current_user == post.user
+      button_to translate("delete_post"), post, method: :delete, class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body"
+    end
   end
 
   def title_and_status

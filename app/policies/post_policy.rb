@@ -31,6 +31,10 @@ class PostPolicy < ApplicationPolicy
     require_user_is_admin!
   end
 
+  def edit?
+    require_user_is_admin_or_author!
+  end
+
   def show?
     if post.member_only
       require_user_is_member_or_admin!
