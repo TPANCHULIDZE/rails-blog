@@ -10,14 +10,9 @@ RSpec.describe Location, type: :model do
 
     context 'methods' do
       let(:address) { "Kostava, Kutaisi, Imereti, Georgia" }
-      let(:coordinates) { [42.2345, 42.2323] }
 
       it "address" do
         expect(location.address).to eq(address)
-      end
-
-      it "coordinates" do
-        expect(location.coordinates).to eq(coordinates)
       end
     end
   end

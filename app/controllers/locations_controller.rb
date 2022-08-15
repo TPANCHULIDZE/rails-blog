@@ -16,14 +16,13 @@ class LocationsController < ApplicationController
 
   def create
     @location = current_user.locations.new(locations_params)
-    locations_cordinates = place_cordinates
-    if locations_cordinates
-      @location.latitude = locations_cordinates.first
-      @location.longitude = locations_cordinates.second
+    locations_coordinates = place_coordinates
+    if locations_coordinates
+      @location.latitude = locations_coordinates.first
+      @location.longitude = locations_coordinates.second
       @location.save
       redirect_to profile_path(current_user)  
     else
-      flash[:alert] = "#{locations_cordinates}"
       render :new
     end
   end
@@ -40,14 +39,13 @@ class LocationsController < ApplicationController
     params.require(:location).permit(:street, :city, :state, :country)
   end
 
-  def place_cordinates
+  def place_coordinates
     objects = Geocoder.search(@location.address)
     if !objects.empty?
       data = objects.first.data
     else
       return 
     end
-    #redirect_to root_path, notice: @location.address
     [data["lat"], data["lon"]]
   end
 end

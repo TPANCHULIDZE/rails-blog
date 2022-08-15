@@ -8,10 +8,6 @@ class Location < ApplicationRecord
   validates :longitude, presence: true
 
   def address
-    [street, city, state, country].compact.join(", ")
-  end
-
-  def coordinates
-    [self.latitude, self.longitude]
+    [street, city, state, country].compact_blank.join(", ")
   end
 end
