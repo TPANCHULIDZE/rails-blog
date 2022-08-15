@@ -1,4 +1,6 @@
 class Location < ApplicationRecord
+  include LocationAddress
+
   belongs_to :user
   geocoded_by :address
   after_validation :geocode
@@ -6,8 +8,4 @@ class Location < ApplicationRecord
 
   validates :latitude, presence: true
   validates :longitude, presence: true
-
-  def address
-    [street, city, state, country].compact_blank.join(", ")
-  end
 end
