@@ -21,10 +21,8 @@ export default class extends Controller {
     map,
   });
  
-
 	form.classList.toggle("d-none");
 
 	}
-	
 }
 
